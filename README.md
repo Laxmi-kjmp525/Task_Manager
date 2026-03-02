@@ -1,4 +1,6 @@
 # 🚀 Task Manager Backend (Spring Boot + PostgreSQL)
+<img width="1898" height="946" alt="Screenshot (521)" src="https://github.com/user-attachments/assets/77aad854-993f-42b0-804b-e1afecc3d9a4" />
+<img width="1800" height="984" alt="Screenshot (522)" src="https://github.com/user-attachments/assets/c19618bc-528d-4afa-a8ec-21e52ead954b" />
 
 A RESTful Task Management API built using **Java Spring Boot** and **PostgreSQL**.
 
