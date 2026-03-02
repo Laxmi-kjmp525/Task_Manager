@@ -1,53 +1,72 @@
-# 🚀 Task Manager - Full Stack Application
+# 🚀 Task Manager Backend (Spring Boot + PostgreSQL)
 
-A full-stack Task Management application built using:
+A RESTful Task Management API built using **Java Spring Boot** and **PostgreSQL**.
 
-- 🧠 Spring Boot (Backend)
-- 🐘 PostgreSQL (Database)
-- ⚛️ React + Vite (Frontend)
-- 🔗 REST APIs
-- 📦 Maven
+This project demonstrates:
+
+- Clean layered architecture (Controller → Service → Repository)
+- REST API design
+- Exception handling
+- Validation
+- CORS configuration
+- Database integration using JPA & Hibernate
 
 ---
 
 ## 📌 Project Overview
 
-This is a simple and clean task management system where users can:
+This backend application provides APIs to manage tasks.
 
-- ✅ Create new tasks
-- 📋 View all tasks
-- 🔄 Update task status (Pending / Completed)
-- ❌ Delete tasks
-- 📊 View Pending & Completed task count
+Users can:
 
-The project demonstrates complete full-stack integration between frontend and backend.
+- Create a task
+- Fetch all tasks
+- Fetch task by ID
+- Update a task
+- Delete a task
+- Handle errors gracefully
+
+This project follows standard backend best practices.
 
 ---
 
-## 🏗️ Architecture
+## 🏗️ Architecture (Layered Design)
 
-Frontend (React - Port 5174)
-        ↓
-Backend (Spring Boot - Port 8081)
-        ↓
-PostgreSQL Database
+Controller Layer  
+Handles HTTP requests & responses  
+
+Service Layer  
+Contains business logic  
+
+Repository Layer  
+Handles database operations (JPA)
+
+Database  
+PostgreSQL
+
+
+Client (React/Postman)
+↓
+Controller
+↓
+Service
+↓
+Repository (JPA)
+↓
+PostgreSQL
+
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Backend
 - Java 21
 - Spring Boot 4
 - Spring Data JPA
 - Hibernate
 - PostgreSQL
 - Maven
-
-### Frontend
-- React (Vite)
-- Fetch API
-- CSS (Responsive UI)
+- REST APIs
 
 ---
 
@@ -55,29 +74,30 @@ PostgreSQL Database
 
 
 taskmanager/
-│
-├── taskmanager/ # Backend (Spring Boot)
-│ ├── controller/
-│ ├── service/
-│ ├── repository/
-│ ├── model/
-│ ├── exception/
-│ ├── config/
-│ └── application.properties
-│
-├── taskmanager-frontend/ # Frontend (React)
-│ ├── src/
-│ ├── App.jsx
-│ └── package.json
-│
-└── README.md
+├── controller/
+├── service/
+├── repository/
+├── model/
+├── exception/
+├── config/
+├── TaskmanagerApplication.java
+└── application.properties
 
 
 ---
 
-## ⚙️ Backend Setup (Spring Boot)
+## 📦 Dependencies Used
 
-### 1️⃣ Create Database in PostgreSQL
+- spring-boot-starter-web
+- spring-boot-starter-data-jpa
+- postgresql
+- lombok (optional)
+
+---
+
+## ⚙️ Database Configuration
+
+### 1️⃣ Create Database
 
 ```sql
 CREATE DATABASE task_manager;
@@ -87,95 +107,116 @@ spring.datasource.username=postgres
 spring.datasource.password=YOUR_PASSWORD
 
 spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
 server.port=8081
-3️⃣ Run Backend
+▶️ How to Run Backend
+
+From project root:
+
 cd taskmanager
 ./mvnw spring-boot:run
 
-Backend runs at:
+Application runs on:
 
 http://localhost:8081
+🌐 REST API Endpoints
+✅ Create Task
+POST /api/tasks
+✅ Get All Tasks
+GET /api/tasks
+✅ Get Task by ID
+GET /api/tasks/{id}
+✅ Update Task
+PUT /api/tasks/{id}
+✅ Delete Task
+DELETE /api/tasks/{id}
+🧠 Model Design
+Task Entity
 
-Test API:
+Fields:
 
-http://localhost:8081/api/tasks
-💻 Frontend Setup (React)
-1️⃣ Install dependencies
-cd taskmanager-frontend
-npm install
-2️⃣ Run frontend
-npm run dev
+id (Auto-generated)
 
-Frontend runs at:
+title (Not Null)
 
-http://localhost:5174
-🌐 API Endpoints
-Method	Endpoint	Description
-GET	/api/tasks	Get all tasks
-GET	/api/tasks/{id}	Get task by ID
-POST	/api/tasks	Create task
-PUT	/api/tasks/{id}	Update task
-DELETE	/api/tasks/{id}	Delete task
-⚠️ Error Handling Implemented
+description
 
-✅ Custom Exception: TaskNotFoundException
+status (PENDING / COMPLETED)
 
-✅ Global Exception Handler
+Mapped using:
 
-✅ Validation Handling
+@Entity
+@Table(name = "tasks")
+⚠️ Exception Handling
 
-✅ Proper HTTP status codes
+Implemented:
 
-🔒 CORS Configuration
+Custom Exception → TaskNotFoundException
 
-CORS is configured using a global configuration class:
+Global Exception Handler → @RestControllerAdvice
 
-CorsConfig.java
+Proper HTTP Status Codes (400, 404)
 
-Allows frontend (localhost:5174) to communicate with backend.
+Example response for invalid ID:
 
-🎨 Features
+{
+  "timestamp": "2026-03-02T14:10:00",
+  "status": 404,
+  "message": "Task not found with id: 10"
+}
+🌍 CORS Configuration
 
-Responsive UI
+Global CORS configuration added to allow frontend communication during development.
 
-Clean modern design
+🧪 API Testing
 
-Task status toggle
+Tested using:
 
-Real-time refresh
+Postman
 
-Backend validation
-
-Exception handling
-
-📸 Screenshots
-
-<img width="1898" height="946" alt="Screenshot (521)" src="https://github.com/user-attachments/assets/51a106c2-029a-4115-928b-8c2f69af8854" />
-<img width="1800" height="984" alt="Screenshot (522)" src="https://github.com/user-attachments/assets/e0f0101b-71c6-4e85-8363-3646211ec447" />
-
+Browser
 
 Example:
 
-🎥 Demo Video
+http://localhost:8081/api/tasks
+🎯 Key Backend Concepts Demonstrated
 
-(Add your project demo video link here)
+RESTful API Design
+
+Dependency Injection
+
+Layered Architecture
+
+DTO-ready structure
+
+JPA/Hibernate ORM
+
+Exception Handling
+
+Clean Code Structure
 
 📈 Future Improvements
 
-🔐 Add Authentication (JWT)
+Add DTO layer
 
-📝 Add User-based Tasks
+Add Validation Annotations
 
-📊 Add Pagination
+Add Pagination
 
-🌍 Deploy to Cloud
+Add JWT Authentication
 
-🐳 Dockerize the project
+Add Unit Tests
+
+Dockerize backend
 
 👩‍💻 Author
-
 Laxmi Kumari
 
 ⭐ If you like this project
+<img width="1898" height="946" alt="Screenshot (521)" src="https://github.com/user-attachments/assets/77aad854-993f-42b0-804b-e1afecc3d9a4" />
+<img width="1800" height="984" alt="Screenshot (522)" src="https://github.com/user-attachments/assets/c19618bc-528d-4afa-a8ec-21e52ead954b" />
 
-Give it a ⭐ on GitHub!
+video link:  (https://www.loom.com/share/07197cb3fbda4d999beeb13bb94e93cc)
+
+Give it a ⭐ on GitHub.
