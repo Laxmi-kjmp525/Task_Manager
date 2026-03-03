@@ -5,9 +5,9 @@ A simple and responsive Task Management application built using Spring Boot, Pos
 
 This project demonstrates full-stack development with clean architecture, REST APIs, exception handling, and modern UI design.
 
-<img width="1898" height="946" alt="Screenshot (521)" src="https://github.com/user-attachments/assets/77aad854-993f-42b0-804b-e1afecc3d9a4" />
-<img width="1800" height="984" alt="Screenshot (522)" src="https://github.com/user-attachments/assets/c19618bc-528d-4afa-a8ec-21e52ead954b" />
+
 🛠 Tech Stack
+
 🔹 Backend
 
 Java 21
@@ -67,7 +67,9 @@ Task_Manager/
 │   ├── src/
 │   └── components/
 
+
 ⚙️ Backend Setup (Spring Boot)
+
 1️⃣ Clone the Repository
 
 git clone https://github.com/your-username/Task_Manager.git
@@ -109,6 +111,7 @@ http://localhost:8081
 Test API:
 
 http://localhost:8081/api/tasks
+
 💻 Frontend Setup (React)
 
 Open a new terminal:
@@ -139,12 +142,16 @@ http://localhost:5173
 
 Client (React/Postman)
 ↓
+
 Controller
 ↓
+
 Service
 ↓
+
 Repository (JPA)
 ↓
+
 PostgreSQL
 
 
